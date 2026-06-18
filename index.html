@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOST ELHAZ BANDUNG - Sistem Check-in Kamar Transit</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏠 KOST ELHAZ BANDUNG</h1>
+            <p class="tagline">Lebih dari Sekadar Tempat Singgah</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="#beranda" class="active">Beranda</a></li>
+                <li><a href="#check-in">Check-in</a></li>
+                <li><a href="#kamar">Daftar Kamar</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Beranda Section -->
+            <section id="beranda" class="section">
+                <div class="welcome-box">
+                    <h2>Selamat Datang di KOST ELHAZ BANDUNG</h2>
+                    <p>Tempat menginap terbaik di Bandung dengan fasilitas lengkap dan harga terjangkau. Nikmati kenyamanan menginap dengan layanan check-in yang mudah dan cepat.</p>
+                    <a href="#check-in" class="btn-primary">Mulai Check-in</a>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>⚡ Proses Cepat</h3>
+                        <p>Check-in hanya dalam beberapa menit tanpa antri</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🛏️ Kamar Nyaman</h3>
+                        <p>Kamar transit dengan fasilitas lengkap dan bersih</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>💰 Harga Terjangkau</h3>
+                        <p>Tarif kompetitif dengan kualitas terbaik</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Check-in Section -->
+            <section id="check-in" class="section check-in-section">
+                <h2>Form Check-in Kamar</h2>
+                <form id="checkInForm" class="form-container">
+                    <div class="form-group">
+                        <label for="nama">Nama Tamu:</label>
+                        <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomor-identitas">Nomor Identitas (KTP/SIM):</label>
+                        <input type="text" id="nomor-identitas" name="nomor-identitas" required placeholder="Masukkan nomor identitas">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomor-hp">Nomor HP:</label>
+                        <input type="tel" id="nomor-hp" name="nomor-hp" required placeholder="Masukkan nomor HP">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan email (opsional)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kamar">Pilih Kamar:</label>
+                        <select id="kamar" name="kamar" required>
+                            <option value="">-- Pilih Kamar --</option>
+                            <option value="101">Kamar 101 - Rp 150.000/malam</option>
+                            <option value="102">Kamar 102 - Rp 150.000/malam</option>
+                            <option value="103">Kamar 103 - Rp 200.000/malam (AC)</option>
+                            <option value="201">Kamar 201 - Rp 200.000/malam (AC)</option>
+                            <option value="202">Kamar 202 - Rp 250.000/malam (AC + TV)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="check-in-date">Tanggal Check-in:</label>
+                        <input type="date" id="check-in-date" name="check-in-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="durasi">Durasi Menginap:</label>
+                        <select id="durasi" name="durasi" required>
+                            <option value="">-- Pilih Durasi --</option>
+                            <option value="1">1 Malam</option>
+                            <option value="2">2 Malam</option>
+                            <option value="3">3 Malam</option>
+                            <option value="7">1 Minggu</option>
+                            <option value="30">1 Bulan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="catatan">Catatan Khusus:</label>
+                        <textarea id="catatan" name="catatan" rows="4" placeholder="Catatan atau permintaan khusus..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Selesaikan Check-in</button>
+                </form>
+
+                <div id="hasil-checkin" class="hasil-checkin hidden">
+                    <h3>✅ Check-in Berhasil!</h3>
+                    <div class="receipt">
+                        <p><strong>Nama Tamu:</strong> <span id="hasil-nama"></span></p>
+                        <p><strong>Kamar:</strong> <span id="hasil-kamar"></span></p>
+                        <p><strong>Check-in:</strong> <span id="hasil-tanggal"></span></p>
+                        <p><strong>Durasi:</strong> <span id="hasil-durasi"></span> malam</p>
+                        <p><strong>Total Biaya:</strong> Rp <span id="hasil-biaya"></span></p>
+                        <p style="margin-top: 15px; font-size: 12px; color: #666;"><em>Terima kasih telah menginap di KOST ELHAZ BANDUNG</em></p>
+                    </div>
+                    <button class="btn-primary" onclick="resetForm()">Check-in Tamu Baru</button>
+                </div>
+            </section>
+
+            <!-- Daftar Kamar Section -->
+            <section id="kamar" class="section">
+                <h2>Daftar Kamar Tersedia</h2>
+                <div class="kamar-grid">
+                    <div class="kamar-card">
+                        <h3>Kamar 101 - 102</h3>
+                        <p class="harga">Rp 150.000/malam</p>
+                        <ul>
+                            <li>✓ Tempat tidur single</li>
+                            <li>✓ Kamar mandi dalam</li>
+                            <li>✓ Kipas angin</li>
+                            <li>✓ WiFi gratis</li>
+                        </ul>
+                    </div>
+
+                    <div class="kamar-card">
+                        <h3>Kamar 103 - 201</h3>
+                        <p class="harga">Rp 200.000/malam</p>
+                        <ul>
+                            <li>✓ Tempat tidur double</li>
+                            <li>✓ Kamar mandi dalam</li>
+                            <li>✓ AC (Air Conditioning)</li>
+                            <li>✓ WiFi gratis</li>
+                        </ul>
+                    </div>
+
+                    <div class="kamar-card">
+                        <h3>Kamar 202</h3>
+                        <p class="harga">Rp 250.000/malam</p>
+                        <ul>
+                            <li>✓ Tempat tidur double</li>
+                            <li>✓ Kamar mandi dalam</li>
+                            <li>✓ AC (Air Conditioning)</li>
+                            <li>✓ TV 32 inch</li>
+                            <li>✓ WiFi gratis</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Kontak Section -->
+            <section id="kontak" class="section kontak-section">
+                <h2>Hubungi Kami</h2>
+                <div class="kontak-container">
+                    <div class="kontak-info">
+                        <h3>📍 Alamat</h3>
+                        <p>Jalan Ahmad Yani No. 123<br>Bandung, Jawa Barat 40123</p>
+
+                        <h3>📞 Telepon</h3>
+                        <p>(022) 1234-5678<br>0821-1234-5678</p>
+
+                        <h3>✉️ Email</h3>
+                        <p>021199ahmadsaepudin@gmail.com</p>
+
+                        <h3>⏰ Jam Operasional</h3>
+                        <p>Senin - Minggu: 08:00 - 22:00 WIB<br>24 Jam untuk keadaan darurat</p>
+                    </div>
+
+                    <div class="kontak-form">
+                        <form id="formKontak" onsubmit="handleKontakSubmit(event)">
+                            <div class="form-group">
+                                <label for="nama-kontak">Nama:</label>
+                                <input type="text" id="nama-kontak" name="nama-kontak" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email-kontak">Email:</label>
+                                <input type="email" id="email-kontak" name="email-kontak" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pesan-kontak">Pesan:</label>
+                                <textarea id="pesan-kontak" name="pesan-kontak" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Kirim Pesan</button>
+                        </form>
+                        <div id="pesan-sukses" class="pesan-sukses hidden">Pesan Anda telah dikirim. Terima kasih!</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 KOST ELHAZ BANDUNG. Semua hak dilindungi. | <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
